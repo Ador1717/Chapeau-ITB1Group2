@@ -8,4 +8,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ChepueModel\ChepueModel.csproj" />
+    <ProjectReference Include="..\ChepueService\ChepueService.csproj" />
+  </ItemGroup>
+
 </Project>
