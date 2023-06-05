@@ -6,10 +6,10 @@
         public  TableStatus  status { get; set; }
         public int TableNumber { get; set; }
 
-        public Table(int tableId, Status status, int tableNumber)
+        public Table(int tableId, TableStatus status, int tableNumber)
         {
             TableId = tableId;
-            Status status1 = status;
+            this.status = status;
             TableNumber = tableNumber;
         }
     }

@@ -41,10 +41,11 @@
             preparedBtn = new Button();
             label3 = new Label();
             label2 = new Label();
-            name = new Label();
+            employeeName = new Label();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             preperationBtn = new Button();
+            tableLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -142,14 +143,14 @@
             label2.TabIndex = 15;
             label2.Text = "Bar Orders";
             // 
-            // name
+            // employeeName
             // 
-            name.AutoSize = true;
-            name.Location = new Point(459, 54);
-            name.Name = "name";
-            name.Size = new Size(329, 20);
-            name.TabIndex = 14;
-            name.Text = "someone that will get the name from the system";
+            employeeName.AutoSize = true;
+            employeeName.Location = new Point(459, 54);
+            employeeName.Name = "employeeName";
+            employeeName.Size = new Size(329, 20);
+            employeeName.TabIndex = 14;
+            employeeName.Text = "someone that will get the name from the system";
             // 
             // pictureBox1
             // 
@@ -179,18 +180,28 @@
             preperationBtn.UseVisualStyleBackColor = true;
             preperationBtn.Click += preperationBtn_Click;
             // 
+            // tableLabel
+            // 
+            tableLabel.AutoSize = true;
+            tableLabel.Location = new Point(148, 54);
+            tableLabel.Name = "tableLabel";
+            tableLabel.Size = new Size(50, 20);
+            tableLabel.TabIndex = 21;
+            tableLabel.Text = "label1";
+            // 
             // BarView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(tableLabel);
             Controls.Add(listBarView);
             Controls.Add(listStatusView);
             Controls.Add(servedBtn);
             Controls.Add(preparedBtn);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(name);
+            Controls.Add(employeeName);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
             Controls.Add(preperationBtn);
@@ -216,9 +227,10 @@
         private Button preparedBtn;
         private Label label3;
         private Label label2;
-        private Label name;
+        private Label employeeName;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Button preperationBtn;
+        private Label tableLabel;
     }
 }

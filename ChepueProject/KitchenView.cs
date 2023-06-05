@@ -27,19 +27,21 @@ namespace ChepueUI
         {
             List<OrderItem> bars = GetKitchenOrders();
 
-            // Clearing the list before displaying
             listViewKitchen.Items.Clear();
 
             foreach (OrderItem bar in bars)
             {
-                ListViewItem li = new ListViewItem(bar.OrderId.ToString());
-                li.Tag = bar;
+                if (bar.OrderItemId > 9)
+                {
+                    ListViewItem li = new ListViewItem(bar.OrderId.ToString());
+                    li.Tag = bar;
 
-                li.SubItems.Add(bar.OrderItemId.ToString());
-                li.SubItems.Add(bar.Quantity.ToString());
-                li.SubItems.Add(bar.Comment.ToString());
+                    li.SubItems.Add(bar.OrderItemId.ToString());
+                    li.SubItems.Add(bar.Quantity.ToString());
+                    li.SubItems.Add(bar.Comment.ToString());
 
-                listViewKitchen.Items.Add(li);
+                    listViewKitchen.Items.Add(li);
+                }
             }
         }
 

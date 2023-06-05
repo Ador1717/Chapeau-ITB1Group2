@@ -19,19 +19,20 @@ namespace ChepueProject
         {
             List<OrderItem> bars = GetBars();
 
-            // Clearing the list before displaying
             listBarView.Items.Clear();
-
             foreach (OrderItem bar in bars)
             {
-                ListViewItem li = new ListViewItem(bar.OrderId.ToString());
-                li.Tag = bar;
+                if (bar.OrderItemId < 9)
+                {
+                    ListViewItem li = new ListViewItem(bar.OrderId.ToString());
+                    li.Tag = bar;
 
-                li.SubItems.Add(bar.OrderItemId.ToString());
-                li.SubItems.Add(bar.Quantity.ToString());
-                li.SubItems.Add(bar.Comment.ToString());
+                    li.SubItems.Add(bar.OrderItemId.ToString());
+                    li.SubItems.Add(bar.Quantity.ToString());
+                    li.SubItems.Add(bar.Comment.ToString());
 
-                listBarView.Items.Add(li);
+                    listBarView.Items.Add(li);
+                }
             }
         }
 
@@ -42,7 +43,11 @@ namespace ChepueProject
             ListViewItem li = new ListViewItem(bar.OrderId.ToString());
             li.SubItems.Add(bar.Status.ToString());
             listStatusView.Items.Add(li);
+
+                tableLabel.Text = $"{bar.Order.Table.TableId}";
+           
         }
+
 
 
         private void listBarView_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,9 +68,13 @@ namespace ChepueProject
 
         private void preperationBtn_Click(object sender, EventArgs e)
         {
-            if (listBarView.SelectedItems.Count > 0)
+            OrderItem selectedBar = (OrderItem)listBarView.SelectedItems[0].Tag;
+            if (selectedBar.Status != Status.Ordered)
             {
-                OrderItem selectedBar = (OrderItem)listBarView.SelectedItems[0].Tag;
+                MessageBox.Show("Please select an Order item!");
+            }
+            else
+            {
                 selectedBar.Status = Status.InPreparation;
                 UpdateStatusInDatabase(selectedBar);
                 DisplayOrderDetails(selectedBar); ;
