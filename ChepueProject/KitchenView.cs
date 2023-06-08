@@ -16,91 +16,114 @@ namespace ChepueUI
 {
     public partial class KitchenView : Form
     {
-        private List<OrderItem> GetKitchenOrders()
+        private List<OrderItem> GetOrders()
         {
             BarService barService = new BarService();
-            List<OrderItem> bars = barService.GetBars();
-            return bars;
+            List<OrderItem> orders = barService.GetOrders();
+            return orders;
         }
 
         private void DisplayBars()
         {
-            List<OrderItem> bars = GetKitchenOrders();
+            List<OrderItem> orders = GetOrders();
 
             listViewKitchen.Items.Clear();
 
-            foreach (OrderItem bar in bars)
+            foreach (OrderItem order in orders)
             {
-                if (bar.OrderItemId > 9)
+                if (order.OrderItemId > 9)
                 {
-                    ListViewItem li = new ListViewItem(bar.OrderId.ToString());
-                    li.Tag = bar;
+                    ListViewItem li = new ListViewItem(order.Order.OrderID.ToString());
+                    li.Tag = order;
 
-                    li.SubItems.Add(bar.OrderItemId.ToString());
-                    li.SubItems.Add(bar.Quantity.ToString());
-                    li.SubItems.Add(bar.Comment.ToString());
+                    li.SubItems.Add(order.OrderItemId.ToString());
+                    li.SubItems.Add(order.Quantity.ToString());
+                    li.SubItems.Add(order.Comment.ToString());
 
                     listViewKitchen.Items.Add(li);
+                }
+                else
+                {
+                    ListViewItem li = new ListViewItem(order.Order.OrderID.ToString());
+                    li.Tag = order;
+
+                    li.SubItems.Add(order.OrderItemId.ToString());
+                    li.SubItems.Add(order.Quantity.ToString());
+                    li.SubItems.Add(order.Comment.ToString());
+
+                    bartenderView.Items.Add(li);
+
                 }
             }
         }
 
-        private void DisplayOrderDetails(OrderItem bar)
+        private void DisplayKitchenDetails(OrderItem order)
         {
             listViewStatus.Items.Clear();
 
-            ListViewItem li = new ListViewItem(bar.OrderId.ToString());
-            li.SubItems.Add(bar.Status.ToString());
+            ListViewItem li = new ListViewItem(order.Order.OrderID.ToString());
+            li.SubItems.Add(order.Status.ToString());
             listViewStatus.Items.Add(li);
+
+            tableNum.Text = $"{order.Order.Table.TableNumber}";
+
+        }
+
+        private void DisplayBarDetails(OrderItem order)
+        {
+            bartenderStatusView.Items.Clear();
+
+            ListViewItem li = new ListViewItem(order.Order.OrderID.ToString());
+            li.SubItems.Add(order.Status.ToString());
+            bartenderStatusView.Items.Add(li);
+
+            barTableNum.Text = $"{order.Order.Table.TableNumber}";
         }
 
 
         private void listKitchenView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewKitchen.SelectedItems.Count > 0)
-            {
-                OrderItem selectedRow = (OrderItem)listViewKitchen.SelectedItems[0].Tag;
-                DisplayOrderDetails(selectedRow);
-            }
+            OrderItem selectedRow = (OrderItem)listViewKitchen.SelectedItems[0].Tag;
+            DisplayKitchenDetails(selectedRow);
         }
+        private void bartenderStatusView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            OrderItem selectedRow = (OrderItem)bartenderView.SelectedItems[0].Tag;
+            DisplayBarDetails(selectedRow);
+        }
+
+
         public KitchenView()
         {
             InitializeComponent();
             DisplayBars();
             listViewKitchen.SelectedIndexChanged += listKitchenView_SelectedIndexChanged;
+            bartenderView.SelectedIndexChanged += bartenderStatusView_SelectedIndexChanged;
         }
 
         private void btnPreperation_Click(object sender, EventArgs e)
         {
-            if (listViewKitchen.SelectedItems.Count > 0)
-            {
-                OrderItem selectedBar = (OrderItem)listViewKitchen.SelectedItems[0].Tag;
-                selectedBar.Status = Status.InPreparation;
-                UpdateStatusInDatabase(selectedBar);
-                DisplayOrderDetails(selectedBar); ;
-            }
+            OrderItem selectedBar = (OrderItem)listViewKitchen.SelectedItems[0].Tag;
+            selectedBar.Status = Status.InPreparation;
+            UpdateStatusInDatabase(selectedBar);
+            DisplayKitchenDetails(selectedBar); ;
         }
 
         private void prepearedBtn_Click(object sender, EventArgs e)
         {
-            if (listViewKitchen.SelectedItems.Count > 0)
-            {
-                OrderItem selectedBar = (OrderItem)listViewKitchen.SelectedItems[0].Tag;
-                selectedBar.Status = Status.Ready;
-                UpdateStatusInDatabase(selectedBar);
-                DisplayOrderDetails(selectedBar); ;
-            }
+            OrderItem selectedBar = (OrderItem)listViewKitchen.SelectedItems[0].Tag;
+            selectedBar.Status = Status.Ready;
+            UpdateStatusInDatabase(selectedBar);
+            DisplayKitchenDetails(selectedBar); ;
         }
 
         private void servedBtn_Click(object sender, EventArgs e)
         {
-            if (listViewKitchen.SelectedItems.Count > 0)
-            {
-                OrderItem selectedBar = (OrderItem)listViewKitchen.SelectedItems[0].Tag;
-                selectedBar.Status = Status.Delivered;
-                UpdateStatusInDatabase(selectedBar);
-                DisplayOrderDetails(selectedBar); ;
-            }
+            OrderItem selectedBar = (OrderItem)listViewKitchen.SelectedItems[0].Tag;
+            selectedBar.Status = Status.Delivered;
+            UpdateStatusInDatabase(selectedBar);
+            DisplayKitchenDetails(selectedBar); ;
         }
 
         private void UpdateStatusInDatabase(OrderItem bar)
@@ -121,5 +144,30 @@ namespace ChepueUI
                 connection.Close();
             }
         }
+
+        private void barButtonPrepare_Click(object sender, EventArgs e)
+        {
+            OrderItem selectedBar = (OrderItem)bartenderView.SelectedItems[0].Tag;
+            selectedBar.Status = Status.InPreparation;
+            UpdateStatusInDatabase(selectedBar);
+            DisplayBarDetails(selectedBar); ;
+        }
+
+        private void barButtonPrepared_Click(object sender, EventArgs e)
+        {
+            OrderItem selectedBar = (OrderItem)bartenderView.SelectedItems[0].Tag;
+            selectedBar.Status = Status.Ready;
+            UpdateStatusInDatabase(selectedBar);
+            DisplayBarDetails(selectedBar); ;
+        }
+
+        private void barButtonServed_Click(object sender, EventArgs e)
+        {
+            OrderItem selectedBar = (OrderItem)bartenderView.SelectedItems[0].Tag;
+            selectedBar.Status = Status.Delivered;
+            UpdateStatusInDatabase(selectedBar);
+            DisplayKitchenDetails(selectedBar); ;
+        }
+
     }
 }

@@ -33,13 +33,13 @@ namespace ChepueDAL
                 OrderItem orderItem = new OrderItem()
                 {
                     OrderItemId = (int)(orderItemRow["OrderItemId"]),
-                    OrderId = (int)(orderItemRow["OrderId"]),
                     Quantity = (int)(orderItemRow["Quantity"]),
                     Comment = orderItemRow["Comment"] != DBNull.Value ? orderItemRow["Comment"].ToString() : string.Empty,
                     Status = (Status)Enum.Parse(typeof(Status), orderItemRow["OrderItemStatus"].ToString()),
                     Order = new Order()
                     {
                         OrderTime = Convert.ToDateTime(orderItemRow["OrderTime"]),
+                        OrderID = (int)(orderItemRow["OrderId"]),
                         Employee = new Employee()
                         {
                             Name = orderItemRow["Name"].ToString()
