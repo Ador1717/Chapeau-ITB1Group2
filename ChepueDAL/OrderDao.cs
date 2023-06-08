@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace ChepueDAL
 {
@@ -40,15 +41,6 @@ namespace ChepueDAL
                     {
                         OrderTime = Convert.ToDateTime(orderItemRow["OrderTime"]),
                         OrderID = (int)(orderItemRow["OrderId"]),
-                        Employee = new Employee()
-                        {
-                            Name = orderItemRow["Name"].ToString()
-                        },
-                        Table = new Table(
-                            (int)orderItemRow["TableId"],
-                            (TableStatus)(orderItemRow["TableStatus"] is byte[] bytes && bytes[0] != 0 ? TableStatus.occupied : TableStatus.free),
-                            (int)orderItemRow["TableNumber"]
-                        )
                     }
                 };
 

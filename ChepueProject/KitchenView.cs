@@ -65,7 +65,7 @@ namespace ChepueUI
             li.SubItems.Add(order.Status.ToString());
             listViewStatus.Items.Add(li);
 
-            tableNum.Text = $"{order.Order.Table.TableNumber}";
+            tableNum.Text = $"{order.Order.Table.TableId}";
 
         }
 
@@ -77,7 +77,7 @@ namespace ChepueUI
             li.SubItems.Add(order.Status.ToString());
             bartenderStatusView.Items.Add(li);
 
-            barTableNum.Text = $"{order.Order.Table.TableNumber}";
+            barTableNum.Text = $"{order.Order.Table.TableId}";
         }
 
 

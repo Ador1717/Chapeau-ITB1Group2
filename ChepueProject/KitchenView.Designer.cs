@@ -44,14 +44,12 @@
             prepearedBtn = new Button();
             servedBtn = new Button();
             label3 = new Label();
-            name = new Label();
             tableNum = new Label();
             label2 = new Label();
             BarView = new Panel();
             barTableNum = new Label();
             label4 = new Label();
             label5 = new Label();
-            label6 = new Label();
             label7 = new Label();
             barButtonServed = new Button();
             barButtonPrepared = new Button();
@@ -67,6 +65,7 @@
             columnHeader12 = new ColumnHeader();
             label8 = new Label();
             pictureBox4 = new PictureBox();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             BarView.SuspendLayout();
@@ -195,15 +194,6 @@
             label3.TabIndex = 19;
             label3.Text = "Change order status";
             // 
-            // name
-            // 
-            name.AutoSize = true;
-            name.Location = new Point(738, 44);
-            name.Name = "name";
-            name.Size = new Size(50, 20);
-            name.TabIndex = 20;
-            name.Text = "label2";
-            // 
             // tableNum
             // 
             tableNum.AutoSize = true;
@@ -223,10 +213,10 @@
             // 
             // BarView
             // 
+            BarView.Controls.Add(comboBox1);
             BarView.Controls.Add(barTableNum);
             BarView.Controls.Add(label4);
             BarView.Controls.Add(label5);
-            BarView.Controls.Add(label6);
             BarView.Controls.Add(label7);
             BarView.Controls.Add(barButtonServed);
             BarView.Controls.Add(barButtonPrepared);
@@ -266,15 +256,6 @@
             label5.Name = "label5";
             label5.Size = new Size(0, 20);
             label5.TabIndex = 33;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(738, 46);
-            label6.Name = "label6";
-            label6.Size = new Size(50, 20);
-            label6.TabIndex = 32;
-            label6.Text = "label2";
             // 
             // label7
             // 
@@ -398,6 +379,14 @@
             pictureBox4.TabIndex = 27;
             pictureBox4.TabStop = false;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(631, 35);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 36;
+            // 
             // KitchenView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -406,7 +395,6 @@
             Controls.Add(BarView);
             Controls.Add(label2);
             Controls.Add(tableNum);
-            Controls.Add(name);
             Controls.Add(servedBtn);
             Controls.Add(prepearedBtn);
             Controls.Add(label3);
@@ -438,7 +426,6 @@
         private Button prepearedBtn;
         private Button servedBtn;
         private Label label3;
-        private Label name;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
@@ -450,7 +437,6 @@
         private Panel BarView;
         private Label label4;
         private Label label5;
-        private Label label6;
         private Label label7;
         private Button barButtonServed;
         private Button barButtonPrepared;
@@ -467,5 +453,6 @@
         private Label label8;
         private PictureBox pictureBox4;
         private Label barTableNum;
+        private ComboBox comboBox1;
     }
 }
