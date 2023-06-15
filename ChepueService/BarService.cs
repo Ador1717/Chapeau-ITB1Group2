@@ -10,16 +10,16 @@ namespace ChepueService
 {
     public class BarService
     {
-        private OrderDao bardb;
+        private OrderDao orderdb;
 
         public BarService()
         {
-            bardb = new OrderDao();
+            orderdb = new OrderDao();
         }
-        public List<OrderItem> GetBars()
+        public List<OrderItem> GetOrders()
         {
-            List<OrderItem> bars = bardb.GetAllBarOrders();
-            return bars;
+            List<OrderItem> orders = orderdb.GetAllBarOrders();
+            return orders;
         }
     }
 }
