@@ -1,16 +1,11 @@
-﻿namespace ChepueModel
+﻿public class Table
 {
-    public class Table
-    {
-        public int TableId { get; set; }
-        public  TableStatus  status { get; set; }
-        public int TableNumber { get; set; }
+    public int TableId { get; set; }
+    public bool Is_Occupied { get; set; }
 
-        public Table(int tableId, TableStatus status, int tableNumber)
-        {
-            TableId = tableId;
-            this.status = status;
-            TableNumber = tableNumber;
-        }
+    public Table(int tableId, bool is_Occupied)
+    {
+        TableId = tableId;
+        this.Is_Occupied = is_Occupied;
     }
 }

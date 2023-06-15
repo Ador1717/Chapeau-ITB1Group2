@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace ChepueDAL
 {
@@ -33,23 +34,15 @@ namespace ChepueDAL
                 OrderItem orderItem = new OrderItem()
                 {
                     OrderItemId = (int)(orderItemRow["OrderItemId"]),
-                    OrderId = (int)(orderItemRow["OrderId"]),
                     Quantity = (int)(orderItemRow["Quantity"]),
                     Comment = orderItemRow["Comment"] != DBNull.Value ? orderItemRow["Comment"].ToString() : string.Empty,
                     Status = (Status)Enum.Parse(typeof(Status), orderItemRow["OrderItemStatus"].ToString()),
                     Order = new Order()
                     {
                         OrderTime = Convert.ToDateTime(orderItemRow["OrderTime"]),
-                        Employee = new Employee()
-                        {
-                            Name = orderItemRow["Name"].ToString()
-                        },
-                        Table = new Table(
-                            (int)orderItemRow["TableId"],
-                            (TableStatus)(orderItemRow["TableStatus"] is byte[] bytes && bytes[0] != 0 ? TableStatus.occupied : TableStatus.free),
-                            (int)orderItemRow["TableNumber"]
-                        )
-                    }
+                        OrderID = (int)(orderItemRow["OrderId"]),
+                    },
+                    Table = new Table((int)orderItemRow["TableId"], (bool)orderItemRow["TableStatus"])
                 };
 
                 orders.Add(orderItem);
@@ -57,6 +50,5 @@ namespace ChepueDAL
 
             return orders;
         }
-
     }
 }

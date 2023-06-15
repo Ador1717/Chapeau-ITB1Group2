@@ -13,6 +13,10 @@ namespace ChepueModel
 
         public double Price { get; set; }
 
-        public Category category { get; set; }
+        public Category Category { get; set; }
+
+        public MenuItemType menuItemType { get; set; }
+
+        public int Stock { get ; set; } 
     }
 }
