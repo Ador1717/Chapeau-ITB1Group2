@@ -1,3 +1,8 @@
+<<<<<<<< Updated upstream:Chapeau/Program.cs
+========
+using ChepueUI;
+
+>>>>>>>> Stashed changes:ChepueProject/Program.cs
 namespace Chapeau
 {
     internal static class Program
