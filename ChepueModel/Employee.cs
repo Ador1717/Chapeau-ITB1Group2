@@ -9,11 +9,8 @@ namespace ChepueModel
     public class Employee
     {
         public int EmployeeId { get; set; }
-        public string Name { get; set; }
-        public Role Role { get; set; }
+        public string Name { get; set; } // keep it simple Name, Role, Password
+        public string Role { get; set; }
         public int Password { get; set; }
-        public string Email { get; set; }
-
-
     }
 }

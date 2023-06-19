@@ -3,6 +3,7 @@
     public class Order
     {
         public int OrderID { get; set; }
+        public DateTime OrderEndTime { get; set; }
         public DateTime OrderTime { get; set; }
         public int TableID { get; set; }
         public Employee Employee { get; set; } 

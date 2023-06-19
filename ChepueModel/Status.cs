@@ -7,6 +7,6 @@ namespace ChepueModel
 {
     public enum Status
     {
-        Ordered, InPreparation, Ready, Delivered
+        Running, InPreperation, Ready, Delivered
     }
 }

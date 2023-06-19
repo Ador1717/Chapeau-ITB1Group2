@@ -7,6 +7,6 @@ namespace ChepueModel
 {
     public enum Category
     {
-        Lunch, Dinner, Drinks
+        Drink, Starter, AlcoholicDrink, NonAlcoholicDrink, Main, Desert
     }
 }

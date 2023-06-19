@@ -1,6 +1,6 @@
 using ChepueUI;
 
-namespace ChepueProject
+namespace Chapeau
 {
     internal static class Program
     {
@@ -13,7 +13,7 @@ namespace ChepueProject
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new KitchenView());
+            Application.Run(new Form1());
         }
     }
 }
